@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//Card object structure and properties
 struct CityCard {
     char name[50];
     char code[4];
@@ -13,11 +14,12 @@ struct CityCard {
     float superPower;
 };
 
-
+//Calculate the sum of the card properties
 float getCardTotal(struct CityCard card) {
     return card.area + card.numOfPoints + card.pib + card.pibPerCapita + card.population + card.populationDensity;
 }
 
+//Function responsible for register the inputs and return a card with the values 
 struct CityCard registerCard() {
     struct CityCard card;
 
@@ -48,7 +50,9 @@ struct CityCard registerCard() {
     return card;
 }
 
+//Function responsible for comparing the two cards and deling with the results
 void compareCards(struct CityCard cardA, struct CityCard cardB) {
+    //Variables to keep track of each card points
     int cardAPoints = 0;
     int cardBPoints = 0;
 
@@ -150,6 +154,7 @@ void compareCards(struct CityCard cardA, struct CityCard cardB) {
     printf("----\n");
     printf("\n");
 
+    //If statement responsible for presenting the result based on the number of points that each card acquired
     printf("Resultado: \n");
     if(cardAPoints > cardBPoints) {
         printf("Card 1: %d pontos > Card 2: %d pontos \n", cardAPoints, cardBPoints);
@@ -164,15 +169,18 @@ void compareCards(struct CityCard cardA, struct CityCard cardB) {
 }
 
 int main() {
+    //Declare two card variables
     struct CityCard cityA;
     struct CityCard cityB;
 
+    //Call the function that triggers the user input and define each card variable its return
     cityA = registerCard();
 
     cityB = registerCard();
 
     system("clear");
 
+    //Prints each card registered
     printf("Card 1: \n Nome: %s, \n Código: %s, \n População: %lu, \n Área: %fkm², \n PIB: %f, \n Número de pontos turísticos: %d, \n Densidade populacional: %f, \n PIB per capita: %f, \n Super poder: %f \n",
     cityA.name, cityA.code, cityA.population, cityA.area, cityA.pib, cityA.numOfPoints, cityA.populationDensity, cityA.pibPerCapita, cityA.superPower);
 
@@ -185,6 +193,7 @@ int main() {
     printf("----\n");
     printf("\n");
 
+    //Call the function responsible for comparing each card value
     compareCards(cityA, cityB);
 
     return 0;
